@@ -1,0 +1,540 @@
+:root {
+    --bg-primary: #0B1120;
+    --bg-secondary: #111827;
+    --bg-card: #151F33;
+    --bg-card-hover: #1C2942;
+    --border: #263653;
+    --text-primary: #F8FAFC;
+    --text-secondary: #94A3B8;
+    --text-muted: #64748B;
+    --primary: #4F46E5;
+    --primary-light: #6366F1;
+    --accent: #7C3AED;
+    --primary-hover: #818CF8;
+    --pending: #6366F1;
+    --progress: #F59E0B;
+    --success: #10B981;
+    --danger: #EF4444;
+    --radius-lg: 20px;
+    --radius-md: 14px;
+    --radius-sm: 10px;
+    --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+.light-theme {
+    --bg-primary: #F8FAFC;
+    --bg-secondary: #F1F5F9;
+    --bg-card: #FFFFFF;
+    --bg-card-hover: #F8FAFF;
+    --border: #E2E8F0;
+    --text-primary: #0F172A;
+    --text-secondary: #64748B;
+    --text-muted: #94A3B8;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Passero One", system-ui, sans-serif;
+}
+html {
+    -webkit-text-size-adjust: 100%;
+}
+body {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 290px minmax(0, 1fr) 290px;
+    gap: 24px;
+    padding: 24px;
+    background: linear-gradient(76deg, rgba(79, 70, 229, 1) 0%, rgba(124, 58, 237, 0.82) 49%, rgba(0, 0, 0, 1) 100%);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    line-height: 1.4;
+}
+::selection {
+    background: var(--primary);
+    color: #fff;
+}
+.left,
+main,
+.right {
+    background-color: var(--bg-primary);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    min-width: 0;
+}
+.left {
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    position: sticky;
+    top: 24px;
+    height: calc(100vh - 48px);
+}
+.left .hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+.left .hero h1 {
+    font-size: clamp(2rem, 2.5vw + 1rem, 3.1rem);
+    letter-spacing: 0.02em;
+    font-weight: 400;
+    line-height: 1;
+}
+.left #flow {
+    color: var(--primary-light);
+}
+
+.left .indicador{
+    font-size: 30px;
+    cursor: pointer;
+}
+.left nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.left nav button {
+    width: 100%;
+    min-height: 52px;
+    text-align: left;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--bg-card);
+    color: var(--text-muted);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 1.13rem;
+    line-height: 1;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+.left nav button .bIcone {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    font-size: 1.05rem;
+    transition: background-color 0.2s ease;
+}
+.left nav button:hover {
+    background-color: var(--bg-card-hover);
+    color: var(--primary-hover);
+    border-color: var(--primary);
+    transform: translateY(-1px);
+}
+.left nav button:active {
+    background: var(--accent);
+    color: #fff;
+    transform: translateY(0);
+}
+.left nav button:focus-visible {
+    outline: 2px solid var(--primary-hover);
+    outline-offset: 2px;
+}
+.left .box1 {
+    margin-top: auto;
+    font-size: 1.2rem;
+    line-height: 1.45;
+    text-align: center;
+    padding: 26px 20px 22px;
+    color: var(--primary-hover);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
+}
+.left .box1 p {
+    text-wrap: balance;
+}
+.icone {
+    font-size: 2.6rem;
+    line-height: 1;
+    display: inline-block;
+    margin-bottom: 6px;
+    color: var(--primary-light);
+}
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: clamp(20px, 2.5vw, 32px);
+    min-height: calc(100vh - 48px);
+    overflow: hidden;
+}
+main h1 {
+    font-size: clamp(2rem, 4vw, 3.1rem);
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 22px;
+    letter-spacing: 0.02em;
+}
+main .adicionar {
+    width: 100%;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    background-color: var(--bg-card);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 12px;
+}
+main .adicionar input {
+    flex: 1;
+    min-width: 0;
+    background: var(--bg-secondary);
+    border: 2px solid transparent;
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
+    color: var(--text-primary);
+    font-size: 1.13rem;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+main .adicionar input::placeholder {
+    color: var(--text-muted);
+}
+main .adicionar input:focus {
+    outline: none;
+    border-color: var(--primary-light);
+    background-color: var(--bg-card-hover);
+}
+main .adicionar button {
+    flex-shrink: 0;
+    background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent) 100%);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 14px 22px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: filter 0.2s ease, transform 0.15s ease;
+}
+main .adicionar button:hover {
+    filter: brightness(1.12);
+    transform: translateY(-1px);
+}
+main .adicionar button:active {
+    transform: translateY(0);
+    filter: brightness(0.95);
+}
+main .tarefas {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    border: 2px solid var(--border);
+    background: var(--bg-secondary);
+    margin-top: 18px;
+    padding: 18px;
+    border-radius: var(--radius-md);
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 240px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) transparent;
+    max-height: 600px;
+}
+main .tarefas::-webkit-scrollbar {
+    width: 8px;
+}
+main .tarefas::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 999px;
+}
+main .tarefas::-webkit-scrollbar-track {
+    background: transparent;
+}
+main .tarefas .tarefa {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 14px 14px 14px 16px;
+    min-height: 68px;
+    transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.15s ease;
+}
+main .tarefas .tarefa:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--primary);
+}
+main .tarefas .tarefa input[type="checkbox"] {
+    accent-color: var(--accent);
+    height: 22px;
+    width: 22px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+main .tarefas .tarefa label {
+    flex: 1;
+    min-width: 0;
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+main .tarefas .tarefa input:checked ~ label {
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+    text-decoration-color: var(--success);
+    color: var(--text-muted);
+}
+main .tarefas .tarefa .botoes {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+    position: static;
+}
+main .tarefas .tarefa .botoes button {
+    width: 38px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+main .tarefas .tarefa .botoes button:hover {
+    transform: translateY(-1px);
+}
+main .tarefas .tarefa .botoes .editar:hover {
+    background: var(--progress);
+    border-color: var(--progress);
+    color: #0B1120;
+}
+main .tarefas .tarefa .botoes .excluir:hover {
+    background: var(--danger);
+    border-color: var(--danger);
+    color: #fff;
+}
+.right {
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: sticky;
+    top: 24px;
+    height: calc(100vh - 48px);
+}
+.right .resumo {
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 20px 16px;
+}
+.right .resumo h2 {
+    font-size: 1.9rem;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 16px;
+}
+.right .resumo ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.right .resumo ul li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 9px 8px 9px 16px;
+    font-size: 1.08rem;
+    color: var(--text-secondary);
+    transition: border-color 0.2s ease, transform 0.15s ease;
+}
+.right .resumo ul li:hover {
+    border-color: var(--primary-light);
+    transform: translateX(2px);
+}
+.right .resumo ul li span {
+    min-width: 38px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    color: #fff;
+    font-size: 1.05rem;
+}
+.right .resumo ul li:nth-child(2) span {
+    background: linear-gradient(135deg, var(--pending) 0%, var(--accent) 100%);
+}
+.right .resumo ul li:nth-child(3) span {
+    background: linear-gradient(135deg, var(--progress) 0%, #B45309 100%);
+}
+.right .resumo ul li:nth-child(4) span {
+    background: linear-gradient(135deg, var(--success) 0%, #047857 100%);
+}
+.right .box2 {
+    margin-top: auto;
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.45;
+    color: var(--text-secondary);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
+    padding: 26px 20px;
+}
+.right .box2 p {
+    text-wrap: balance;
+}
+@media (max-width: 1100px) {
+    body {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 18px;
+    }
+    .left,
+    .right,
+    main {
+        position: static;
+        height: auto;
+        min-height: 0;
+    }
+    .left .hero {
+        justify-content: space-between;
+    }
+    .left nav {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .left nav button {
+        justify-content: center;
+        text-align: center;
+        gap: 8px;
+        font-size: 1.05rem;
+    }
+    .left .box1 {
+        margin-top: 4px;
+    }
+    main {
+        min-height: 62vh;
+    }
+    main .tarefas {
+        max-height: 520px;
+    }
+    .right .resumo ul {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .right .box2 {
+        margin-top: 0;
+    }
+}
+@media (max-width: 720px) {
+    body {
+        gap: 14px;
+        padding: 14px;
+    }
+    .left,
+    main,
+    .right {
+        border-radius: 18px;
+    }
+    .left {
+        padding: 18px 14px;
+        gap: 16px;
+    }
+    .left .hero h1 {
+        font-size: 2.2rem;
+    }
+    .left .hero .trilho {
+        height: 34px;
+        width: 64px;
+    }
+    .left .hero .trilho .indicador {
+        height: 22px;
+        width: 22px;
+    }
+    .left .hero .trilho.light .indicador {
+        left: calc(100% - 29px);
+    }
+    .left nav {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .left nav button {
+        min-height: 48px;
+        font-size: 1rem;
+        justify-content: flex-start;
+    }
+    .left .box1 {
+        font-size: 1.08rem;
+        padding: 20px 14px;
+    }
+    main {
+        padding: 18px 14px;
+    }
+    main h1 {
+        font-size: 2rem;
+        margin-bottom: 16px;
+    }
+    main .adicionar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    main .adicionar input {
+        width: 100%;
+        text-align: center;
+    }
+    main .adicionar button {
+        width: 100%;
+    }
+    main .tarefas {
+        padding: 12px;
+        gap: 10px;
+    }
+    main .tarefas .tarefa {
+        flex-wrap: wrap;
+        padding: 12px;
+    }
+    main .tarefas .tarefa label {
+        flex: 1 1 40%;
+        font-size: 1.12rem;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+    .right {
+        padding: 18px 14px;
+    }
+    .right .resumo ul {
+        grid-template-columns: 1fr;
+    }
+    .right .box2 {
+        font-size: 1.08rem;
+        padding: 20px 14px;
+    }
+    .icone {
+        font-size: 2rem;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
