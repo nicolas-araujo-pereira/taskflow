@@ -5,7 +5,7 @@ const tarefas = []
 
 const adicionarTarefa = () => {
     const id = crypto.randomUUID()
-    const titulo = input
+    const titulo = input.value
     const status = "pendente"
 
     tarefas.push({
@@ -13,16 +13,19 @@ const adicionarTarefa = () => {
         titulo: titulo,
         status: status
     })
+
 }
 
-const renderizarTarefa = (tarefa) => {
+const tarefaHTML = (tarefa) => {
+
+
     const elementoTarefa = document.createElement("div")
     elementoTarefa.className = "tarefa"
-    elementoTarefa.id = tarefas[tarefa].id
+    elementoTarefa.id = tarefa.id
 
     const titulo = document.createElement("label")
-    titulo.textContent = tarefas[tarefa].titulo
-    
+    titulo.textContent = tarefa.titulo
+
     const check = document.createElement("input")
     check.type = "checkbox"
 
@@ -45,8 +48,71 @@ const renderizarTarefa = (tarefa) => {
     elementoTarefa.appendChild(containerBotoes)
 
     listaTarefas.appendChild(elementoTarefa)
+
+
+
 }
 
+const excluirTarefa = () => {
+    const botoesExcluir = document.querySelectorAll(".excluir")
+    botoesExcluir.forEach((botao, indice) => {
+        botao.addEventListener("click", () => {
+            botao.dataset.id = tarefas[indice].id
+            const id = botao.dataset.id
+            const tarefaEncontrada = tarefas.find(tarefa => {
+                return tarefa.id === id
+            })
+            const index = tarefas.findIndex(tarefa => {
+                return tarefa.id === tarefaEncontrada.id
+            })
+            console.log(index)
+            tarefas.splice(index, 1)
+            renderizarTarefa()
+        })
+    })
+}
+
+const editarTarefa = () => {
+    const botaoEditar = document.querySelectorAll(".editar")
+    botaoEditar.forEach((botao, indice) => {
+        botao.addEventListener("click", () => {
+            botao.dataset.id = tarefas[indice].id
+            const id = botao.dataset.id
+            const tarefaEncontrada = tarefas.find(tarefa => {
+                return tarefa.id === id
+            })
+            const index = tarefas.findIndex(tarefa => {
+                return tarefa.id === tarefaEncontrada.id
+            })
+            const novoTitulo = prompt()
+            tarefas[index].titulo = novoTitulo
+            renderizarTarefa()
+        })
+    })
+}
+    
+const renderizarTarefa = () => {
+
+    listaTarefas.innerHTML = ""
+
+    tarefas.forEach((tarefa) => {
+        tarefaHTML(tarefa)
+    })
+
+    excluirTarefa()
+    editarTarefa()
+}
+
+
+
+
+
 botaoAdicionar.addEventListener("click", () => {
-  renderizarTarefa(0)  
+    if (input.value.trim() !== "") {
+        adicionarTarefa()
+    }
+    renderizarTarefa()
+
+    input.value = ""
+
 })
