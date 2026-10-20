@@ -421,14 +421,12 @@ main .tarefas .tarefa .botoes .excluir:hover {
     font-size: 1.05rem;
 }
 .right .resumo ul li:nth-child(2) span {
-    background: linear-gradient(135deg, var(--pending) 0%, var(--accent) 100%);
+    background: linear-gradient(135deg, var(--progress) 0%, #3f3902 100%);
 }
 .right .resumo ul li:nth-child(3) span {
-    background: linear-gradient(135deg, var(--progress) 0%, #B45309 100%);
+    background: linear-gradient(135deg, var(--success) 0%, #56b409 100%);
 }
-.right .resumo ul li:nth-child(4) span {
-    background: linear-gradient(135deg, var(--success) 0%, #047857 100%);
-}
+
 .right .box2 {
     margin-top: auto;
     text-align: center;
