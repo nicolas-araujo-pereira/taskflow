@@ -1,10 +1,39 @@
-import { tarefas, editarTarefa, excluirTarefa, concluirTarefas, adicionarTarefa } from './task.js'
+import { tarefas, criarTarefasPendentes, criarTarefasConcluidas, editarTarefa, excluirTarefa, concluirTarefas, adicionarTarefa } from './task.js'
 
 const input = document.getElementById("inputAdicionar")
 const listaTarefas = document.querySelector(".tarefas")
 const botaoAdicionar = document.getElementById("botaoAdicionar")
 
-const tarefaHTML = (tarefa) => {
+//CONTADORES
+
+const todas = document.getElementById("rTodas")
+const pendentes = document.getElementById("rPendentes")
+const concluidas = document.getElementById("rConcluidas")
+
+//Filtros
+
+const botaoTodas = document.getElementById("bTodas")
+const botaoPendentes = document.getElementById("bPendentes")
+const botaoConcluidas = document.getElementById("bConcluidas")
+
+let filtro = "Todas"
+
+botaoTodas.addEventListener("click", () => {
+    filtro = "Todas"
+    atualizarTela()
+})
+
+botaoPendentes.addEventListener("click", () => {
+    filtro = "Pendentes"
+    atualizarTela()
+})
+
+botaoConcluidas.addEventListener("click", () => {
+    filtro = "Concluidas"
+    atualizarTela()
+})
+
+const tarefaHTML = (tarefa) => {  // Função que cria a estrutura HTML das tarefas
 
 
     const elementoTarefa = document.createElement("div")
@@ -16,6 +45,9 @@ const tarefaHTML = (tarefa) => {
 
     const check = document.createElement("input")
     check.className = "inputCheckbox"
+    if(tarefa.status === "concluida"){
+        check.checked = true
+    }
     check.type = "checkbox"
 
     const containerBotoes = document.createElement("div")
@@ -39,14 +71,45 @@ const tarefaHTML = (tarefa) => {
     listaTarefas.appendChild(elementoTarefa)
 }
 
-const renderizarTarefa = () => {
+const renderizarTarefa = () => { // Função que coloca as tarefas geradas na tela
 
     listaTarefas.innerHTML = ""
+    if(filtro === "Todas"){
+        tarefas.forEach((tarefa) => {
+            tarefaHTML(tarefa)
+        })
+    }
 
-    tarefas.forEach((tarefa) => {
-        tarefaHTML(tarefa)
-    })
+    if(filtro === "Pendentes"){
+        const tarefasPendentes = criarTarefasPendentes()
+        tarefasPendentes.forEach((tarefa) => {
+            tarefaHTML(tarefa)
+        })
+    }
 
+    if(filtro === "Concluidas"){
+        const tarefasConcluidas = criarTarefasConcluidas() 
+        tarefasConcluidas.forEach((tarefa) => {
+            tarefaHTML(tarefa)
+        })
+    }
+    
+
+}
+
+const contadores = () => {
+    todas.textContent = tarefas.length
+    pendentes.textContent = tarefas.filter(element => element.status === "pendente").length
+    concluidas.textContent = tarefas.filter(element => element.status === "concluida").length
+}
+
+const atualizarTela = () => {   // Função responsável por atualizar os elementos na tela em cada ação do usuário
+    renderizarTarefa()  // Função que coloca as tarefas geradas na tela
+    mapearExcluirTarefa()   // Mapea o clique dos botões excluir criados 
+    mapearEditarTarefa()    // Mapea o clique dos botões editar criados 
+    mapearConcluirTarefas() // Mapea a mudança nos inputs tipo checkbox criados
+    contadores()
+    
 }
 
 const mapearExcluirTarefa = () => {
@@ -97,7 +160,6 @@ const mapearEditarTarefa = () => {
 
 const mapearConcluirTarefas = () => {
     const checkbox = document.querySelectorAll(".inputCheckbox")
-    
     checkbox.forEach((input) => {
         input.addEventListener("change", () => {
             
@@ -116,17 +178,11 @@ const mapearConcluirTarefas = () => {
             atualizarTela()
         })
     })
+    
 }
 
 
-const atualizarTela = () => {
-    renderizarTarefa()
-    mapearExcluirTarefa()
-    mapearEditarTarefa()
-    mapearConcluirTarefas()
-}
-
-botaoAdicionar.addEventListener("click", () => {
+botaoAdicionar.addEventListener("click", () => { // adiciona um titulo para a tarefa quando clicar no botão
     if (input.value.trim() !== "") {
         adicionarTarefa(input.value)
     }
@@ -135,3 +191,8 @@ botaoAdicionar.addEventListener("click", () => {
     
     atualizarTela()
 })
+
+//FILTROS
+
+
+
