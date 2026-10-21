@@ -1,0 +1,181 @@
+:root {
+    --bg-primary: #0B1120;
+    --bg-secondary: #111827;
+    --bg-card: #151F33;
+    --bg-card-hover: #1C2942;
+    --border: #263653;
+    --text-primary: #F8FAFC;
+    --text-secondary: #94A3B8;
+    --text-muted: #64748B;
+    --primary: #4F46E5;
+    --primary-light: #6366F1;
+    --accent: #7C3AED;
+    --primary-hover: #818CF8;
+    --pending: #6366F1;
+    --progress: #F59E0B;
+    --success: #10B981;
+    --danger: #EF4444;
+    --radius-lg: 20px;
+    --radius-md: 14px;
+    --radius-sm: 10px;
+    --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+.light-theme {
+    --bg-primary: #F8FAFC;
+    --bg-secondary: #F1F5F9;
+    --bg-card: #FFFFFF;
+    --bg-card-hover: #F8FAFF;
+    --border: #E2E8F0;
+    --text-primary: #0F172A;
+    --text-secondary: #64748B;
+    --text-muted: #94A3B8;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Passero One", system-ui, sans-serif;
+}
+html {
+    -webkit-text-size-adjust: 100%;
+}
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(76deg, rgba(79, 70, 229, 1) 0%, rgba(124, 58, 237, 0.82) 49%, rgba(0, 0, 0, 1) 100%);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    line-height: 1.4;
+}
+::selection {
+    background: var(--primary);
+    color: #fff;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 20px;
+    background-color: var(--bg-primary);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    min-width: 0;
+    padding: 30px;
+}
+
+main .hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+main .hero h1 {
+    font-size: clamp(2rem, 2.5vw + 1rem, 3.1rem);
+    letter-spacing: 0.02em;
+    font-weight: 400;
+    line-height: 1;
+}
+main #flow {
+    color: var(--primary-light);
+}
+
+.indicador {
+    font-size: 40px;
+    position: relative;
+    right: 10px;
+    top: 2px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.indicador .lua,
+.indicador .sol {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+.indicador .lua {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+.indicador .sol {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
+}
+
+.light-theme .indicador .lua {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.5);
+}
+
+.light-theme .indicador .sol {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+main h2 {
+    font-size: 30px;
+    color: var(--text-primary);
+}
+
+main p {
+    font-size: 18px;
+    color: var(--text-muted);
+}
+
+main form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+main form .container-input{
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.container-input input{
+    width: 100%;
+    height: 60px;
+    padding: 10px 20px;
+    outline: none;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    background-color: var(--bg-card);
+}
+
+main form button {
+    width : 100%;
+    padding : 10px;
+    font-size: 18px;
+    font-weight: bold;
+    align-self: center;
+    background-color: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+main a {
+    text-decoration: none;
+    color: var(--primary);
+    cursor: pointer;
+}
