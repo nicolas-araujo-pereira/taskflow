@@ -1,8 +1,11 @@
+import { getStorage, setStorage } from "./storage"
+
 const nome = document.querySelector(".nome")
 const senha = document.querySelector(".senha")
 const cSenha = document.querySelector(".cSenha")
 const criar = document.querySelector(".criar")
-const arrayUsers = []
+
+const users = getStorage()
 
 function verificaInputsVazios(){
     if(nome.value.trim() !== "" && senha.value.trim() !== "" && cSenha.value.trim() !== "" ){
@@ -15,9 +18,10 @@ function verificaInputsVazios(){
 
 function comparaSenha(senha1,senha2){
     if (senha1 === senha2){
-        console.log("senhas iguais")
-    }else{
-        console.log("senhas diferentes")
+        return true
+    }else{        
+        alert("As senhas devem ser iguais")
+        return false
     }
 }
 
@@ -26,7 +30,8 @@ criar.addEventListener("click", () => {
     if(verificacao){
         const senhaConfirmada = comparaSenha(senha.value, cSenha.value)
         if(senhaConfirmada){
-            const get = getStorage()          
+             users.push({nome: nome.value, senha: senha.value})
+             setStorage(users)          
         }
     }
 })
