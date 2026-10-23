@@ -1,4 +1,5 @@
 import { tarefas, criarTarefasPendentes, criarTarefasConcluidas, editarTarefa, excluirTarefa, concluirTarefas, adicionarTarefa } from './task.js'
+import {deslogar} from './auth.js'
 
 const input = document.getElementById("inputAdicionar")
 const listaTarefas = document.querySelector(".tarefas")
@@ -195,4 +196,5 @@ botaoAdicionar.addEventListener("click", () => { // adiciona um titulo para a ta
 //FILTROS
 
 
-
+const sair = document.querySelector(".sair")
+sair.addEventListener("click", deslogar)

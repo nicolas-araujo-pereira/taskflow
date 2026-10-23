@@ -1,4 +1,4 @@
-import { getStorage, setStorage } from "./storage"
+import { getStorage, setStorage } from "./storage.js"
 
 const nome = document.querySelector(".nome")
 const senha = document.querySelector(".senha")
@@ -31,7 +31,11 @@ criar.addEventListener("click", () => {
         const senhaConfirmada = comparaSenha(senha.value, cSenha.value)
         if(senhaConfirmada){
              users.push({nome: nome.value, senha: senha.value})
-             setStorage(users)          
+             setStorage(users)
+             alert("Usuário criado")
+             nome.value = ""
+             senha.value =""
+             cSenha.value = ""          
         }
     }
 })
