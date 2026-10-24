@@ -1,4 +1,4 @@
-import { getStorage, setStorage } from "./storage.js"
+import { getStorage, setStorage} from "./storage.js"
 
 const nome = document.querySelector(".nome")
 const senha = document.querySelector(".senha")

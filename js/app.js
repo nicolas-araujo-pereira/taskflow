@@ -198,3 +198,5 @@ botaoAdicionar.addEventListener("click", () => { // adiciona um titulo para a ta
 
 const sair = document.querySelector(".sair")
 sair.addEventListener("click", deslogar)
+
+atualizarTela()  // Renderiza as tarefas salvas do usuário ao carregar a tela

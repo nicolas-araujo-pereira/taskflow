@@ -1,5 +1,5 @@
-
-export const tarefas = []
+import {getStorageTask, setStorageTask} from './storage.js'
+export const tarefas = getStorageTask()
 
 export const adicionarTarefa = (input) => {
     const id = crypto.randomUUID()
@@ -11,6 +11,8 @@ export const adicionarTarefa = (input) => {
         titulo: titulo,
         status: status
     })
+
+    setStorageTask(tarefas)
 
     
     
@@ -29,10 +31,12 @@ export const criarTarefasConcluidas = () => {
 
 export const excluirTarefa = (index) => {
     tarefas.splice(index, 1)
+    setStorageTask(tarefas)
 }
 
 export const editarTarefa = (novoTitulo, index) => {
     tarefas[index].titulo = novoTitulo
+    setStorageTask(tarefas)
 }
 
 export const concluirTarefas = (input,index) => {
@@ -41,5 +45,6 @@ export const concluirTarefas = (input,index) => {
     } else {
         tarefas[index].status = "pendente"
     }
+    setStorageTask(tarefas)
 }
 
